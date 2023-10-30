@@ -1,26 +1,29 @@
-#coding=utf-8
+# coding=utf-8
 
 import tkinter as tk
-window =tk.Tk()
-window.title('Mywindow')
-window.geometry('200x200')
 
-var=tk.StringVar()
+window = tk.Tk()
+window.title('MyWindow')
+window.geometry('400x300')
 
-l=tk.Label(window,textvariable=var,bg='green',font=('Arail',12),width=15,height=2)
-l.pack()
+# 显示的文本
+showText = tk.StringVar()
 
-on_hit=False
+on_hit = False
 
-def hit_me():
+
+def on_button_click():
     global on_hit
-    if on_hit==False:
-        on_hit=True
-        var.set('you hit me')
+    if not on_hit:
+        on_hit = True
+        showText.set('miss you!')
     else:
-        on_hit=False
-        var.set('')
-b=tk.Button(window,text='点我',width=15,height=2,command=hit_me)
-b.pack()
+        on_hit = False
+        showText.set('')
+
+
+# 界面
+tk.Label(window, textvariable=showText, bg='green', font=('Arial', 12), width=15, height=2).pack()
+tk.Button(window, text='点我', width=15, height=2, command=on_button_click).pack()
 
 window.mainloop()
